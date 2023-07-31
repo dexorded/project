@@ -6,10 +6,18 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          'Text',
+    final TextEditingController controller = TextEditingController();
+
+    return Scaffold(
+      body: Container(
+        width: double.infinity,
+        alignment: Alignment.center,
+        padding: const EdgeInsets.all(16.0),
+        child: TextField(
+          controller: controller,
+          decoration: const InputDecoration(
+            hintText: 'Enter phrase',
+          ),
         ),
       ),
     );
