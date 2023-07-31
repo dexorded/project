@@ -12,9 +12,9 @@ class SharedPrefDatasource {
 
     if (sharedPreferences != null) {
       await sharedPreferences?.setString(key, value);
+    } else {
+      throw SharedPreferencesNotInitializated();
     }
-
-    throw SharedPreferencesNotInitializated();
   }
 
   Future<String> getString({
@@ -30,9 +30,9 @@ class SharedPrefDatasource {
       }
 
       throw SharedPreferencesDoesNotHaveData();
+    } else {
+      throw SharedPreferencesNotInitializated();
     }
-
-    throw SharedPreferencesNotInitializated();
   }
 
   Future<void> _init() async {
