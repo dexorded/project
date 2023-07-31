@@ -69,6 +69,14 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
   ) async {
     try {
       await clearNoteUseCase.call(const NoParams());
+      emit(
+        DataNoteState(
+          note: Note(
+            title: '',
+            data: '',
+          ),
+        ),
+      );
     } on SharedPreferencesNotInitializated {
       debugPrint('SharedPreferencesNotInitializated');
     }
