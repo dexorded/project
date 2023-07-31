@@ -9,8 +9,8 @@ class App extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.orange,
+        colorScheme: const ColorScheme.light(
+          primary: Colors.orange,
         ),
       ),
       initialRoute: '/',
