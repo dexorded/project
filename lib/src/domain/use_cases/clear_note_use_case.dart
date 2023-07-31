@@ -1,4 +1,4 @@
-import 'package:project/core/use_case.dart';
+import 'package:project/core/use_case/use_case.dart';
 import 'package:project/src/domain/repositories/note_respotiory.dart';
 
 class ClearNoteUseCase extends UseCase<void, NoParams> {
