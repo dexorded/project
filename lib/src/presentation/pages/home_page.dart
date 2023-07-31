@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project/src/data/datasource/shared_pref_datasource.dart';
-import 'package:project/src/data/repositories/note_repository_impl.dart';
-import 'package:project/src/domain/repositories/note_respotiory.dart';
 import 'package:project/src/presentation/controllers/note_controller/note_bloc.dart';
 import 'package:project/src/presentation/pages/forbidden_page.dart';
 import 'package:project/src/presentation/pages/home_page/data_home_page.dart';
@@ -13,16 +10,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SharedPrefDatasource datasource = SharedPrefDatasource();
-    final NoteRepository noteRepository = NoteRepositoryImpl(
-      datasource: datasource,
-    );
-    final NoteBloc noteBloc = NoteBloc(
-      noteRepository: noteRepository,
-    );
-
     return BlocBuilder<NoteBloc, NoteState>(
-      bloc: noteBloc,
+      bloc: BlocProvider.of<NoteBloc>(context),
       builder: (context, state) {
         if (state is LoadingNoteState) {
           return LoadingHomePage(state: state);

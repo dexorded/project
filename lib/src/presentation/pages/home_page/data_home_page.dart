@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project/src/presentation/controllers/note_controller/note_bloc.dart';
 
 class DataHomePage extends StatelessWidget {
@@ -11,10 +12,12 @@ class DataHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final NoteBloc noteBloc = BlocProvider.of<NoteBloc>(context);
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () => noteBloc.add(ClearNoteEvent()),
           icon: const Icon(
             Icons.delete_outline_rounded,
           ),
@@ -25,7 +28,7 @@ class DataHomePage extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => noteBloc.add(SaveNoteEvent()),
             icon: const Icon(
               Icons.done,
             ),
