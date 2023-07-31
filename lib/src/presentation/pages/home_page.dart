@@ -20,6 +20,12 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: IconButton.filled(
+        onPressed: () {},
+        icon: const Icon(
+          Icons.add,
+        ),
+      ),
     );
   }
 }
