@@ -1,3 +1,4 @@
+import 'package:project/core/error/shared_pref_errors.dart';
 import 'package:project/src/data/datasource/shared_pref_datasource.dart';
 import 'package:project/src/data/models/note_model.dart';
 import 'package:project/src/domain/entities/note.dart';
@@ -37,8 +38,16 @@ class NoteRepositoryImpl implements NoteRepository {
     String? title,
     String? data,
   }) async {
-    String title0 = await datasource.getString(key: titleKey);
-    String data0 = await datasource.getString(key: dataKey);
+    late String title0;
+    late String data0;
+
+    try {
+      title0 = await datasource.getString(key: titleKey);
+      data0 = await datasource.getString(key: dataKey);
+    } on SharedPreferencesDoesNotHaveData {
+      title0 = '';
+      data0 = '';
+    }
 
     title0 = (title != null) ? title : title0;
     data0 = (data != null) ? data : data0;
