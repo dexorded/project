@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/src/presentation/pages/forbidden_page.dart';
 import 'package:project/src/presentation/pages/home_page.dart';
-import 'package:project/src/presentation/pages/title_page.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -9,6 +8,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: const ColorScheme.light(
@@ -26,10 +26,10 @@ class App extends StatelessWidget {
               case '/':
                 return const HomePage();
 
-              case '/title':
-                return TitlePage(
-                  title: settings.arguments as String,
-                );
+              // case '/title':
+              //   return TitlePage(
+              //     title: settings.arguments as String,
+              //   );
 
               default:
                 return const ForbiddenPage();
