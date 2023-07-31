@@ -7,6 +7,12 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.orange,
+        ),
+      ),
       initialRoute: '/',
       routes: <String, Widget Function(BuildContext)>{
         '/': (_) => const HomePage(),
