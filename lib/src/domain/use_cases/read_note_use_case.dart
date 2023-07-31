@@ -1,7 +1,9 @@
+import 'package:project/core/error/shared_pref_errors.dart';
 import 'package:project/core/use_case/use_case.dart';
+import 'package:project/src/domain/entities/note.dart';
 import 'package:project/src/domain/repositories/note_respotiory.dart';
 
-class ReadNoteUseCase extends UseCase<void, NoParams> {
+class ReadNoteUseCase extends UseCase<Note, NoParams> {
   final NoteRepository noteRepository;
 
   const ReadNoteUseCase({
@@ -9,11 +11,13 @@ class ReadNoteUseCase extends UseCase<void, NoParams> {
   });
 
   @override
-  Future<void> call(NoParams params) async {
+  Future<Note> call(NoParams params) async {
     try {
-      await noteRepository.read();
-    } catch (_) {
-      throw UnimplementedError();
+      return await noteRepository.read();
+    } on SharedPreferencesDoesNotHaveData {
+      rethrow;
+    } on SharedPreferencesNotInitializated {
+      rethrow;
     }
   }
 }
