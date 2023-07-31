@@ -13,7 +13,7 @@ class ClearNoteUseCase extends UseCase<void, NoParams> {
     try {
       await noteRepository.clear();
     } catch (_) {
-      throw UnimplementedError();
+      rethrow;
     }
   }
 }
