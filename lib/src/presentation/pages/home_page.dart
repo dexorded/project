@@ -6,7 +6,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController controller = TextEditingController();
+    final TextEditingController textController = TextEditingController();
+
+    void openTitlePage() {
+      Navigator.of(context).pushNamed(
+        '/title',
+        arguments: textController.text,
+      );
+    }
 
     return Scaffold(
       body: Container(
@@ -14,14 +21,14 @@ class HomePage extends StatelessWidget {
         alignment: Alignment.center,
         padding: const EdgeInsets.all(16.0),
         child: TextField(
-          controller: controller,
+          controller: textController,
           decoration: const InputDecoration(
             hintText: 'Enter phrase',
           ),
         ),
       ),
       floatingActionButton: IconButton.filled(
-        onPressed: () {},
+        onPressed: openTitlePage,
         icon: const Icon(
           Icons.add,
         ),
