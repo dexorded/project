@@ -66,10 +66,34 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
   FutureOr<void> _onClearNoteEvent(
     ClearNoteEvent event,
     Emitter<NoteState> emit,
-  ) {}
+  ) async {
+    try {
+      await clearNoteUseCase.call(const NoParams());
+    } on SharedPreferencesNotInitializated {
+      debugPrint('SharedPreferencesNotInitializated');
+    }
+  }
 
   FutureOr<void> _onSaveNoteEvent(
     SaveNoteEvent event,
     Emitter<NoteState> emit,
-  ) {}
+  ) async {
+    if (state is! DataNoteState) {
+      return;
+    }
+
+    final String title0 = (state as DataNoteState).titleTextController.text;
+    final String data0 = (state as DataNoteState).dataTextController.text;
+
+    try {
+      await updateNoteUseCase.call(
+        Note(
+          title: title0,
+          data: data0,
+        ),
+      );
+    } on SharedPreferencesNotInitializated {
+      debugPrint('SharedPreferencesNotInitializated');
+    }
+  }
 }
